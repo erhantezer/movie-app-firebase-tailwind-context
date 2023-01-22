@@ -4,6 +4,14 @@ import avatar from "../assets/icons/avatar.png";
 import Switch from './Switch';
 
 const Navbar = () => {
+
+ //* with custom hook
+  // const { currentUser } = useAuthContext();
+
+  const currentUser = { displayName: "erhan tezer" };
+  // const currentUser = false;
+ 
+
   return (
     <>
       <nav className="w-full flex flex-wrap items-center justify-between py-5 bg-white dark:bg-gray-900 dark:text-white shadow-lg navbar navbar-expand-lg fixed-top">
@@ -13,9 +21,10 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center relative">
-            {/* Icon */}
             
-              <h5 className="mr-2 capitalize">Erhan</h5>
+            {currentUser && 
+              <h5 className="mr-2 capitalize">{currentUser?.displayName}</h5>
+            }  
             
             <Switch/>
             <div className="dropdown relative">

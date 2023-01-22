@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import GoogleIcon from '../assets/icons/GoogleIcon'
 
 const Login = () => {
+
+
+  
   return (
     <div className="flex justify-center">
     <div className="form-image hidden md:block">
