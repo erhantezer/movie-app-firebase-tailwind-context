@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import GoogleIcon from '../assets/icons/GoogleIcon'
+import { createUser } from '../auth/firebase'
 
 const Register = () => {
+
+  const navigate = useNavigate()
+
+const [inputValue, setInputValue] = useState({
+    firstName:"",
+    lastName: "",
+    email: "",
+    password: ""
+  })
+
+
+  
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const {email, password,firstName, lastName} = inputValue;
+  const displayName = `${firstName} ${lastName}`
+  createUser(email, password, navigate,displayName);
+}
+
+  const handleChange = (e) => {
+    setInputValue({...inputValue, [e.target.name] : e.target.value})
+  }
   return (
     <div className="flex justify-center">
     <div className="form-image hidden md:block">
@@ -17,7 +41,7 @@ const Register = () => {
       >
         <form
           className="absolute inset-[2px] rounded-[8px] bg-gray-100 dark:bg-[#28292d] z-[10] form flex flex-col p-20"
-          
+          onSubmit={handleSubmit}
         >
           <h2 className="text-[#ff4b45] text-2xl font-[500] text-center tracking-[0.1em]">
             Sign Up
@@ -27,7 +51,8 @@ const Register = () => {
               type="text"
               required
               className="relative w-[100%] inputbox-input bg-transparent outline-none text-[#23242a] font-[1em] tracking-[0.05em]"
-              
+              name='firstName'
+              onChange={handleChange}
             />
             <span className="absolute left-0 inputbox-span font-[1em] text-[#8f8f8f] tracking-[0.05em]">
               First Name
@@ -39,7 +64,8 @@ const Register = () => {
               type="text"
               required
               className="relative w-[100%] inputbox-input bg-transparent outline-none text-[#23242a] font-[1em] tracking-[0.05em]"
-              
+              name='lastName'
+              onChange={handleChange}
             />
             <span className="absolute left-0 inputbox-span font-[1em] text-[#8f8f8f] tracking-[0.05em]">
               Last Name
@@ -51,7 +77,8 @@ const Register = () => {
               type="email"
               required
               className="relative w-[100%] inputbox-input bg-transparent outline-none text-[#23242a] font-[1em] tracking-[0.05em]"
-              
+              name='email'
+              onChange={handleChange}
             />
             <span className="absolute left-0 inputbox-span font-[1em] text-[#8f8f8f] tracking-[0.05em]">
               Email
@@ -63,7 +90,8 @@ const Register = () => {
               type="password"
               required
               className="relative w-[100%] inputbox-input bg-transparent outline-none text-[#23242a] font-[1em] tracking-[0.05em]"
-              
+              name='password'
+              onChange={handleChange}
             />
             <span className="absolute left-0 inputbox-span font-[1em] text-[#8f8f8f] tracking-[0.05em]">
               Password

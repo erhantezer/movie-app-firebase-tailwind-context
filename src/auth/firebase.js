@@ -21,14 +21,14 @@ const auth = getAuth(app);
 
 
 //! register
-export const createUser = async (email, password) => {
+export const createUser = async (email, password, navigate, displayName) => {
     //! yeni bir kullanıcı oluşturmak için kullanılan firebase metodu
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password)
         console.log(userCredential);
-
+        navigate("/")
         await updateProfile(auth.currentUser, {
-            displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+            displayName
         })
     } catch (error) {
         console.log(error)
