@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContextProvider";
+import { toastWarnNotify } from "../helpers/toastify";
 
 
 
@@ -13,33 +14,35 @@ const MovieCard = ({ poster_path, title, overview, vote_average, id }) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
- const getVote = (vote) => {
-  if (vote >= 8) {
-    return "green"
-  } else if (vote >= 6) {
-    return "orange"
-  } else {
-    return "red"
+  const getVote = (vote) => {
+    if (vote >= 8) {
+      return "green"
+    } else if (vote >= 6) {
+      return "orange"
+    } else {
+      return "red"
+    }
   }
-}
 
   return (
     <div
       className="movie"
-
+      onClick={() => {currentUser ? navigate("details/" + id) : toastWarnNotify("please log in to see details")}}
     >
       <img
         loading="lazy"
-        src={IMG_API + poster_path}
+        src={poster_path ? IMG_API + poster_path : defaultImage}
         alt="movie-card"
       />
       <div className="flex align-baseline justify-between p-1 text-white">
         <h5>{title}</h5>
-        
-          <span >
+        {currentUser &&
+          (<span className={`tag ${getVote(vote_average)}`} >
             {vote_average}
-          </span>
-      
+          </span>)
+        }
+
+
       </div>
       <div className="movie-over">
         <h2>Overview</h2>
