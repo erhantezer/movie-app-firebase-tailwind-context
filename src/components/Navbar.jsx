@@ -39,7 +39,7 @@ console.log(currentUser)
                 aria-expanded="false"
               >
                 <img
-                  src={avatar}
+                  src={currentUser?.photoURL || avatar}
                   className="rounded-full"
                   style={{ height: 25, width: 25 }}
                   alt="user"

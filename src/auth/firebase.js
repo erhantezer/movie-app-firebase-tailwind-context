@@ -27,7 +27,7 @@ export const createUser = async (email, password, navigate, displayName) => {
         console.log(userCredential);
         navigate("/")
         await updateProfile(auth.currentUser, {
-            displayName
+            displayName:displayName,
         })
     } catch (error) {
         console.log(error)
@@ -54,7 +54,8 @@ export const userObserver = (setCurrentUser) => {
             const { email, displayName, photoURL } = user;
             setCurrentUser({ email, displayName, photoURL })
         } else {
-            alert("user empty")
+            setCurrentUser(false);
+            console.log("çıkış yapıldı email, displayName, photoURL boş");
         }
     });
 }
