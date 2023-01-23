@@ -28,12 +28,13 @@ useEffect(() => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  if (condition) {
-    
-  } else if () {
-    
+  if (search && currentUser) {
+    getMovies(SEARCH_API + search)
+    search("")
+  } else if (!currentUser) {
+    alert("please log in to see details")
   } else {
-  
+    alert("please enter a text")
   }
 }
 
