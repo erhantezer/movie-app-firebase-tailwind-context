@@ -54,7 +54,7 @@ console.log(movies)
           onChange={(e) => setSearch(e.target.value)}
           value={search}
         />
-        <button className="dark:text-inherit" type="submit">
+        <button className="dark:text-white" type="submit">
           Search
         </button>
       </form>
