@@ -38,9 +38,10 @@ export const createUser = async (email, password, navigate, displayName) => {
 
 
 //! login
-export const signIn = async (email, password) => {
+export const signIn = async (email, password, navigate) => {
     try {
         await signInWithEmailAndPassword(auth, email, password)
+        navigate("/")
     } catch (error) {
         console.log(error);
     }

@@ -1,9 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import GoogleIcon from '../assets/icons/GoogleIcon'
+import { signIn } from '../auth/firebase'
 
 const Login = () => {
 
+const navigate = useNavigate()
+const [loginInput, setLoginInput] = useState({
+    email: "",
+    password: ""
+  })
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const {email, password} = loginInput
+  signIn(email, password, navigate);
+};
+
+const handleChange = (e) => {
+  setLoginInput({...loginInput, [e.target.name] : e.target.value});
+}
 
   
   return (
@@ -21,17 +37,18 @@ const Login = () => {
       >
         <form
           className="absolute inset-[2px] rounded-[8px] bg-gray-100 dark:bg-[#28292d] z-[10] form flex flex-col p-20"
-          
+          onSubmit={handleSubmit}
         >
           <h2 className="text-[#ff4b45] text-2xl font-[500] text-center tracking-[0.1em]">
             Sign In
           </h2>
           <div className="relative w-[300px] mt-[35px] inputbox">
             <input
+              name='email'
               type="email"
               required
               className="relative w-[100%] inputbox-input bg-transparent outline-none text-[#23242a] font-[1em] tracking-[0.05em]"
-              
+              onClick={handleChange}
             />
             <span className="absolute left-0 inputbox-span font-[1em] text-[#8f8f8f] tracking-[0.05em]">
               Email
@@ -40,10 +57,11 @@ const Login = () => {
           </div>
           <div className="relative w-[300px] mt-[35px] inputbox">
             <input
+              name='password'
               type="password"
               required
               className="relative w-[100%] inputbox-input bg-transparent outline-none text-[#23242a] font-[1em] tracking-[0.05em]"
-              
+              onClick={handleChange}
             />
             <span className="absolute left-0 inputbox-span font-[1em] text-[#8f8f8f] tracking-[0.05em]">
               Password

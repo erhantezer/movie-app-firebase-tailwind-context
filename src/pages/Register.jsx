@@ -20,7 +20,7 @@ const handleSubmit = (e) => {
   e.preventDefault();
   const {email, password,firstName, lastName} = inputValue;
   const displayName = `${firstName} ${lastName}`
-  createUser(email, password, navigate,displayName);
+  createUser(email, password, navigate, displayName);
 }
 
   const handleChange = (e) => {
