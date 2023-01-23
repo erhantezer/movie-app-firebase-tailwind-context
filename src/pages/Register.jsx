@@ -107,12 +107,12 @@ const Register = () => {
               <i className="absolute left-0 bottom-0 w-[100%] h-[2px] bg-[#ff4b45] rounded-[4px]"></i>
             </div>
             <input
-              className="border-none outline-none bg-[#ff4b45] custom-input w-full mt-[15px] rounded-[4px] font-[600] cursor-pointer"
+              className="border-none outline-none bg-[#ff4b45] custom-input w-[303px] mt-[25px] rounded-[4px] font-[600] cursor-pointer"
               type="submit"
               value="Register"
             />
             <button
-              className="flex justify-between border-none outline-none bg-[#ff4b45] custom-input w-full mt-[15px] rounded-[4px] font-[600] cursor-pointer"
+              className="flex justify-between border-none outline-none bg-[#ff4b45] custom-input w-[303px] mt-[15px] rounded-[4px] font-[600] cursor-pointer"
               type="button"
               onClick={handleGoogleProvider}
             >

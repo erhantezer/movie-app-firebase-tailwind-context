@@ -88,12 +88,12 @@ const handleGoogleProvider = () => {
               </Link>
             </div>
             <input
-              className="border-none outline-none bg-[#ff4b45] custom-input w-full mt-[15px] rounded-[4px] font-[600] cursor-pointer"
+              className="border-none outline-none bg-[#ff4b45] custom-input w-[303px] mt-[15px] rounded-[4px] font-[600] cursor-pointer"
               type="submit"
               value="Login"
             />
             <button
-              className="flex justify-between border-none outline-none bg-[#ff4b45] custom-input w-full mt-[15px]  rounded-[4px] font-[600] cursor-pointer"
+              className="flex justify-between border-none outline-none bg-[#ff4b45] custom-input w-[303px] mt-[15px]  rounded-[4px] font-[600] cursor-pointer"
               type="button"
               onClick={handleGoogleProvider}
             >
