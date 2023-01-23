@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from "../helpers/toastify";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -28,7 +28,7 @@ export const createUser = async (email, password, navigate, displayName) => {
         console.log(userCredential);
         navigate("/")
         await updateProfile(auth.currentUser, {
-            displayName:displayName,
+            displayName: displayName,
         })
         toastSuccessNotify("Registered successfully!");
     } catch (error) {
@@ -68,4 +68,38 @@ export const userObserver = (setCurrentUser) => {
 export const logout = () => {
     signOut(auth);
     toastSuccessNotify("Logged out successfully!");
+};
+
+
+
+//! Google ile girişi enable yap
+export const signInWithGoogle = (navigate) => {
+
+    const provider = new GoogleAuthProvider();
+//! Açılır pencere ile giriş yapılması için kullanılan firebase metodu
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            navigate("/");
+            toastSuccessNotify("Logged in successfully!");
+        }).catch((error) => {
+            console.log(error);
+        });
 }
+
+
+
+
+export const forgotPassword = (email) => {
+    //? Email yoluyla şifre sıfırlama için kullanılan firebase metodu
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            // Password reset email sent!
+            toastWarnNotify("Please check your mail box!");
+            // alert("Please check your mail box!");
+        })
+        .catch((err) => {
+            toastErrorNotify(err.message);
+            // alert(err.message);
+            // ..
+        });
+};
