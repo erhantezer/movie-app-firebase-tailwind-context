@@ -36,9 +36,9 @@ console.log(movies)
       getMovies(SEARCH_API + search)
       search("")
     } else if (!currentUser) {
-      toastWarnNotify("please log in to see details")
+      toastWarnNotify("Please login to see details")
     } else {
-      toastWarnNotify("please enter a text")
+      toastWarnNotify("Please enter a text")
     }
   }
 
