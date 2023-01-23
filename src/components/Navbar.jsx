@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import avatar from "../assets/icons/avatar.png";
+import { AuthContext } from '../context/AuthContextProvider';
 import Switch from './Switch';
 
 const Navbar = () => {
-
+const {currentUser} = useContext(AuthContext);
+console.log(currentUser)
  //* with custom hook
   // const { currentUser } = useAuthContext();
 
-  const currentUser = { displayName: "erhan tezer" };
+  // const currentUser = { displayName: "erhan tezer" };
   // const currentUser = false;
  
 
