@@ -38,7 +38,7 @@ const MovieCard = ({ poster_path, title, overview, vote_average, id }) => {
         <h5>{title}</h5>
         {currentUser &&
           (<span className={`tag ${getVote(vote_average)}`} >
-            {vote_average}
+            {vote_average.tofixet(2)}
           </span>)
         }
 
